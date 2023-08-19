@@ -1,5 +1,6 @@
-/*
-size_t strlcpy(char *dst, const char *src, size_t size)
+#include "libft.h"
+
+size_t ft_strlcpy(char *dst, const char *src, size_t size)
 {
     unsigned int i;
     unsigned int j;
@@ -21,9 +22,9 @@ size_t strlcpy(char *dst, const char *src, size_t size)
         i++;
     }
     dest[i] = '/0';
-    return ()
+    return ('')
 }
-*/
+
 
 #include <string.h>
 #include <bsd/string.h>
