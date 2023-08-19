@@ -32,7 +32,8 @@ char    *ft_strdup(const char *s1);
 void	*ft_calloc(size_t nmemb, size_t size);
 
 /* Additional Functions */
-char *ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char    *ft_strjoin(const char *s1, const char *s2);
 
 /*Bonus*/
 typedef struct		s_list
