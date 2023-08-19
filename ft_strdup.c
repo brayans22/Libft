@@ -13,7 +13,7 @@ size_t	ft_strlen(const char * s1)
 
 char	*ft_strdup(const char *s1)
 {
-	int	i;
+	int		i;
 	char	*aux;
 	
 	if (!(aux = (char *) malloc(ft_strlen(s1) + 1)))
