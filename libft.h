@@ -6,7 +6,7 @@
 # include <stdlib.h>
 # include "libft.h"
 
-/* String functions */
+/* Mandatory */
 size_t  ft_strlen(const char * s1);
 size_t 	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t 	ft_strlcpy(char *dst, const char *src, size_t size);
@@ -40,7 +40,7 @@ char    *ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void 	ft_putchar_fd(char c, int fd);
 
-/*Bonus*/
+/* Bonus */
 typedef struct		s_list
 {
 	void			*content;
