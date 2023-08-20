@@ -7,7 +7,7 @@ LIBC =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 		ft_strnstr.c ft_strrchr.c ft_tolower.c ft_toupper.c \
 		ft_strlcat.c ft_strlcpy.c
 
-ADDITIONAL = ft_substr.c ft_strjoin.c
+ADDITIONAL = ft_substr.c ft_strjoin.c ft_strtrim.c ft_strmapi.c
 
 BONUS =	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
 		ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
