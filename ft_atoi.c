@@ -1,13 +1,5 @@
 #include "libft.h"
 
-/*
-** LIBRARY: N/A
-** SYNOPSIS: count elements of a list
-**
-** DESCRIPTION:
-** 		Counts the number of elements in a list.
-*/
-
 int	ft_atoi(const char *str)
 {
 	int sign;
@@ -21,7 +13,7 @@ int	ft_atoi(const char *str)
 	if (*str == '-' || *str == '+')
 	{
 		if (*str == '-')
-		sign = sign * -1;
+			sign = -sign;
 		str++;
 	}
 	while (*str >= '0' && *str <= '9')

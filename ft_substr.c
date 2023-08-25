@@ -5,7 +5,7 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
     char                    *sub;
     size_t                  i; 
 
-    sub = (char *)malloc((sizeof(char) * len) + 1);
+    sub = (char *)malloc(len + 1);
     if (!sub || !s)
         return (NULL);
     i = 0;
