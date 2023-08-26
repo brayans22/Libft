@@ -6,6 +6,7 @@
         "utility": "c",
         "functional": "c",
         "type_traits": "c",
-        "*.tcc": "c"
+        "*.tcc": "c",
+        "libft.h": "c"
     }
 }
