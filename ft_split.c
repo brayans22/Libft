@@ -1,25 +1,63 @@
 #include "libft.h"
 
-char    **get_new_split(char **old_split, char *sub, unsigned int count_strings)
+void    free_split_memory(char **split)
 {
-    int             i;
-    char            **new_split;
-    
-    new_split = (char **) malloc(sizeof(char *) * (count_strings + 1));
-    if (!new_split || !sub)
-        return (NULL);
-    i = -1;
-    while (++i < (int)count_strings - 1)
+    unsigned int i;
+
+    i = 0;
+    while (split[i] != NULL)
     {
-        new_split[i] = ft_strdup(old_split[i]);
-        if (!new_split[i])
+        free(split[i]);
+        i++;
+    }
+    free(split);
+}
+
+char    **fill_split(char **dest_split, char **src_split, char *sub, unsigned int count_strings)
+{
+    unsigned int i;
+
+    i = 0;
+    while (i < count_strings - 1)
+    {
+        dest_split[i] = ft_strdup(src_split[i]);
+        if (!dest_split[i])
         {
+            free_split_memory(dest_split);
+            free_split_memory(src_split);
+            free(sub);
             return (NULL);
         }
+        i++;
     }
-    new_split[i++] = ft_strdup(sub);
-    new_split[i] = NULL;
-    return (new_split);
+    free_split_memory(src_split);
+    dest_split[i] = ft_strdup(sub);
+    if (!dest_split[i])
+    {
+        free(sub);
+        free_split_memory(dest_split);
+    }
+    free(sub);
+    dest_split[i + 1] = NULL;
+    return (dest_split);
+}
+
+char    **get_new_split(char **old_split, char *sub, unsigned int count_strings)
+{
+    char            **new_split;
+    
+    if (!sub)
+    {
+        free_split_memory(old_split);
+        return (NULL);
+    }
+    if (!(new_split = (char **) malloc(sizeof(char *) * (count_strings + 1))))
+    {
+        free_split_memory(old_split);
+        free(sub);
+        return (NULL);
+    }
+    return (fill_split(new_split, old_split, sub, count_strings));
 }
 
 char    **ft_split(char const *s, char c)
@@ -32,8 +70,7 @@ char    **ft_split(char const *s, char c)
 
     i = 0;
     count_strings = 0;
-    split = (char **)malloc(sizeof(char *));
-    if (!split)
+    if (!(split = (char **)malloc(sizeof(char *))))
         return (NULL);
     while (s[i])
     {
@@ -50,7 +87,8 @@ char    **ft_split(char const *s, char c)
         if (len > 0)
         {
             count_strings++;
-            split = get_new_split(split, ft_substr(s, start, len), count_strings);
+            if(!(split = get_new_split(split, ft_substr(s, start, len), count_strings)))
+                return (NULL);
         }
     }
     return (split);
