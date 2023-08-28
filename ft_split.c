@@ -32,16 +32,15 @@ char    **ft_split(char const *s, char c)
 
     i = 0;
     count_strings = 0;
+    split = (char **)malloc(sizeof(char *));
+    if (!split)
+        return (NULL);
     while (s[i])
     {
         len = 0;
         start = 0;
         while (s[i] == c && s[i])
-        {
-            if (s[i] == '\0' && count_strings == 0)
-                return (get_new_split(split, ft_substr(s, start, len), count_strings));
             i++;
-        }
         start = i;
         while (s[i] != c && s[i])
         {
@@ -53,8 +52,6 @@ char    **ft_split(char const *s, char c)
             count_strings++;
             split = get_new_split(split, ft_substr(s, start, len), count_strings);
         }
-        else 
-            return (NULL);
     }
     return (split);
 }
@@ -64,8 +61,8 @@ char    **ft_split(char const *s, char c)
 #include <string.h>
 int main()
 {
-    char *seg =    "juan jose lopez";
-    char **split_copy = ft_split(seg, 'w');
+    char *seg =    "RRRRRRR";
+    char **split_copy = ft_split(seg, 'R');
     
     int i = 0;
     while (split_copy[i] != NULL)
@@ -75,8 +72,8 @@ int main()
     }
     printf("-----------------------------------------------------------------------------------------------\n");
 
-    char cadena[] = "juan jose lopez";
-    char delimitador[] = "w";
+    char cadena[] = "RRRRRRR";
+    char delimitador[] = "R";
     char *token = strtok(cadena, delimitador);
     if(token != NULL){
         while(token != NULL)
@@ -85,6 +82,7 @@ int main()
             token = strtok(NULL, delimitador);
         }
     }
+    
     return 0;
 }
 */
