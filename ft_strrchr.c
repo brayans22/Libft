@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/06 19:07:01 by bsaiago-          #+#    #+#             */
+/*   Updated: 2023/09/06 19:12:30 by bsaiago-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
 	char	*aux;
-	
+
 	aux = NULL;
 	while (*s)
 	{
-		if(*s == c)
+		if (*s == c)
 			aux = (char *)s;
 		s++;
 	}
@@ -17,8 +29,6 @@ char	*ft_strrchr(const char *s, int c)
 		return ((char *) s);
 	return (aux);
 }
-
-
 /*
 #include <string.h>
 #include <stdio.h>

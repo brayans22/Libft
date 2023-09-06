@@ -1,23 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/06 19:13:57 by bsaiago-          #+#    #+#             */
+/*   Updated: 2023/09/06 19:17:38 by bsaiago-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-#define NULL_STR '\0'
-
-int wrapped_strncmp(const char *s1, const char *s2, size_t n, size_t i)
+int	wrapper_strncmp(const char *s1, const char *s2, size_t n, size_t i)
 {
-    if (i < n && s1[i] && s2[i])
-    {
-        if (s1[i] != s2[i])
-            return ((unsigned char) s1[i] - (unsigned char) s2[i]);
-        return (wrapped_strncmp(s1, s2, n, i + 1));
-    }
-    if (i == n)
-        return (0);
-    return ((unsigned char) s1[i] - (unsigned char) s2[i]);
+	if (i < n && s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char) s1[i] - (unsigned char) s2[i]);
+		return (wrapper_strncmp(s1, s2, n, i + 1));
+	}
+	if (i == n)
+		return (0);
+	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
 }
 
-int ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-    return (wrapped_strncmp(s1, s2, n, 0));
+	return (wrapper_strncmp(s1, s2, n, 0));
 }
 /*
 size_t i;

@@ -1,10 +1,21 @@
-#include "libft.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/06 17:33:48 by bsaiago-          #+#    #+#             */
+/*   Updated: 2023/09/06 17:36:05 by bsaiago-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),void (*del)(void *))
+#include "libft.h"
+
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list *current;
-	t_list *first;
+	t_list	*current;
+	t_list	*first;
 
 	first = ft_lstnew(f(lst -> content));
 	if (!lst || !f || !del || !first)
