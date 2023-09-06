@@ -28,7 +28,6 @@ int 	ft_toupper(int c);
 int		ft_tolower(int c);
 int     ft_atoi(const char *str);
 char    *ft_strdup(const char *s1);
-
 void	*ft_calloc(size_t nmemb, size_t size);
 
 /* Additional Functions */
