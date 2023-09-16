@@ -6,35 +6,13 @@
 /*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 15:35:40 by bsaiago-          #+#    #+#             */
-/*   Updated: 2023/09/06 17:25:54 by bsaiago-         ###   ########.fr       */
+/*   Updated: 2023/09/14 14:52:04 by bsaiago-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*rev_string(char *str, size_t size)
-{
-	int		half;
-	int		i;
-	char	tmp;
-
-	half = size / 2;
-	tmp = 0;
-	i = 0;
-	if (str[0] == '-')
-		i = 1;
-	while (half > 0)
-	{
-		tmp = str[i];
-		str[i++] = str[size - 1];
-		str[size - 1] = tmp;
-		size--;
-		half--;
-	}
-	return (str);
-}
-
-size_t	len_number(int nb)
+static size_t	len_number(int nb)
 {
 	int	len;
 
@@ -53,16 +31,18 @@ size_t	len_number(int nb)
 		nb = nb / 10;
 		len++;
 	}
-	return (nb);
+	return (len);
 }
 
-char	*convert_int_to_string(int n)
+static char	*convert_int_to_string(int n)
 {
 	char			*digits;
 	unsigned int	i;
+	size_t			len_nb;
 	int				digit;
 
-	digits = (char *)malloc(len_number(n) + 1);
+	len_nb = len_number(n);
+	digits = (char *)malloc(len_nb + 1);
 	if (!digits)
 		return (NULL);
 	i = 0;
@@ -74,11 +54,12 @@ char	*convert_int_to_string(int n)
 	while (n > 0)
 	{
 		digit = n % 10;
-		digits[i++] = digit + '0';
+		digits[--len_nb] = digit + '0';
 		n = n / 10;
+		i++;
 	}
 	digits[i] = '\0';
-	return (rev_string(digits, i));
+	return (digits);
 }
 
 char	*ft_itoa(int n)

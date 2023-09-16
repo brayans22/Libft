@@ -6,13 +6,13 @@
 /*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:13:57 by bsaiago-          #+#    #+#             */
-/*   Updated: 2023/09/06 19:17:38 by bsaiago-         ###   ########.fr       */
+/*   Updated: 2023/09/15 11:48:04 by bsaiago-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	wrapper_strncmp(const char *s1, const char *s2, size_t n, size_t i)
+static int	wrapper_strncmp(const char *s1, const char *s2, size_t n, size_t i)
 {
 	if (i < n && s1[i] && s2[i])
 	{

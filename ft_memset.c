@@ -6,7 +6,7 @@
 /*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:43:30 by bsaiago-          #+#    #+#             */
-/*   Updated: 2023/09/06 18:56:04 by bsaiago-         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:09:48 by bsaiago-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned int	i;
+	int	i;
 
 	i = -1;
-	while (++i < n)
+	while (++i < (int)n)
 		*((char *) s + i) = c;
 	return (s);
 }

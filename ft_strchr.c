@@ -6,7 +6,7 @@
 /*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:12:40 by bsaiago-          #+#    #+#             */
-/*   Updated: 2023/09/06 19:13:40 by bsaiago-         ###   ########.fr       */
+/*   Updated: 2023/09/15 14:10:10 by bsaiago-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ char	*ft_strchr(const char *s, int c)
 {
 	while (*s)
 	{
-		if (*s == c)
+		if (*s == (char) c)
 			return ((char *) s);
 		s++;
 	}
-	if (c == '\0')
+	if ((char) c == '\0')
 		return ((char *) s);
 	return (NULL);
 }
@@ -31,15 +31,14 @@ int main()
 {
    char *input;
 
-   input = "abcdefghijklmnopqrstuvwxyz";
+   input = "teste";
    
-   printf("%p\n", (char *)ft_strchr(input, '\0'));
+   printf("%s\n", (char *)ft_strchr(input, 'e'));
 
-   char *inputt = "abcdefghijklmnopqrstuvwxyz";
-   printf("%p\n", (char *)strchr(inputt, '\0'));
+   char *inputt = "teste";
+   printf("%s\n", (char *)strchr(inputt, 'e'));
 
 
    
    return (0);
-}
-*/
+}*/

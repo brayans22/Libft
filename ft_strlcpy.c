@@ -6,7 +6,7 @@
 /*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 18:58:08 by bsaiago-          #+#    #+#             */
-/*   Updated: 2023/09/06 19:02:31 by bsaiago-         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:34:44 by bsaiago-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	return (ft_strlen(src));
 }
 
-/*<<
+/*
 #include <string.h>
 #include <bsd/string.h>
 #include <stdio.h>

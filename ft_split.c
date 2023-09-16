@@ -5,100 +5,99 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 16:27:28 by bsaiago-          #+#    #+#             */
-/*   Updated: 2023/09/06 19:56:09 by bsaiago-         ###   ########.fr       */
+/*   Created: 2023/09/07 11:53:10 by bsaiago-          #+#    #+#             */
+/*   Updated: 2023/09/15 21:29:05 by bsaiago-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-void	free_split_memory(char **split)
+static int	get_total_words(char *s, char c)
 {
-	unsigned int	i;
+	int	total;
+	int	total_letters;
 
-	i = 0;
-	while (split[i] != NULL)
+	total = 0;
+	total_letters = 0;
+	while (*s)
 	{
-		free(split[i]);
-		i++;
+		while (*s == c && *s)
+			s++;
+		while (*s != c && *s)
+		{
+			total_letters++;
+			s++;
+			if (*s == '\0' || *s == c)
+				total++;
+		}
 	}
+	if (total == 0 && total_letters > 0)
+		return (1);
+	return (total);
+}
+
+static void	free_split_memory(char **split, unsigned int total_words)
+{
+	while (total_words-- > 0)
+		free(split[total_words]);
 	free(split);
 }
 
-char	**fill_split(char **dest_split, char **src_split, \
-			char *sub,	unsigned int count_strings)
+static int	fill_split(char **split, char *s, char sep, \
+		unsigned int total_words)
 {
+	unsigned int	len_word;
 	unsigned int	i;
 
 	i = 0;
-	while (i < count_strings - 1)
+	split[total_words] = NULL;
+	while (total_words > 0)
 	{
-		dest_split[i] = ft_strdup(src_split[i]);
-		if (!dest_split[i++])
+		len_word = 0;
+		while (*s == sep && *s)
+			s++;
+		while (s[len_word] != sep && s[len_word])
+			len_word++;
+		split[i] = ft_substr(s, 0, len_word);
+		if (!split[i])
 		{
-			free_split_memory(dest_split);
-			free_split_memory(src_split);
-			free(sub);
-			return (NULL);
+			free_split_memory(split, i);
+			return (-1);
 		}
+		s += len_word;
+		total_words--;
+		i++;
 	}
-	free_split_memory(src_split);
-	dest_split[i] = ft_strdup(sub);
-	free(sub);
-	if (!dest_split[i])
-	{
-		free_split_memory(dest_split);
-		return (NULL);
-	}
-	dest_split[i + 1] = NULL;
-	return (dest_split);
-}
-
-char	**get_new_split(char **old_split, char *sub, unsigned int count_strings)
-{
-	char	**new_split;
-
-	if (!sub)
-	{
-		free_split_memory(old_split);
-		return (NULL);
-	}
-	new_split = (char **) malloc(sizeof(char *) * (count_strings + 1));
-	if (!new_split)
-	{
-		free_split_memory(old_split);
-		free(sub);
-		return (NULL);
-	}
-	return (fill_split(new_split, old_split, sub, count_strings));
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char			**split;
-	char			*sub;
-	unsigned int	start;
-	unsigned int	i;
-	unsigned int	count_strings;
+	char	**split;
+	int		total_words;
+	int		i;
 
+	if (!s)
+		return (NULL);
+	total_words = get_total_words((char *)s, c);
+	split = (char **)malloc(sizeof(char *) * (total_words + 1));
+	if (!split)
+		return (NULL);
 	i = 0;
-	count_strings = 0;
-	split = (char **)malloc(sizeof(char *));
-	while (s[i] && split)
-	{
-		while (s[i] == c && s[i])
-			i++;
-		start = i;
-		while (s[i] != c && s[i])
-			i++;
-		if (i - start > 0)
-		{
-			count_strings++;
-			sub = ft_substr(s, start, i - start);
-			split = get_new_split(split, sub, count_strings);
-		}
-	}
+	if (fill_split(split, (char *)s, c, total_words) == -1)
+		return (NULL);
 	return (split);
 }
 /*
+int	main()
+{
+	int i;
+	char **split = ft_split("--1-2--3----4-----5-----42",  '-');
+	for (i = 0; split[i]; i++)
+		printf("%s\n", split[i]);
+	i++;
+	printf("%s\n", split[i]);
+	return 0;
+}
 */

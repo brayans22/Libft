@@ -6,7 +6,7 @@
 /*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 19:07:01 by bsaiago-          #+#    #+#             */
-/*   Updated: 2023/09/06 19:12:30 by bsaiago-         ###   ########.fr       */
+/*   Updated: 2023/09/15 12:19:07 by bsaiago-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,11 @@ char	*ft_strrchr(const char *s, int c)
 	aux = NULL;
 	while (*s)
 	{
-		if (*s == c)
-			aux = (char *)s;
+		if (*s == (char) c)
+			aux = (char *) s;
 		s++;
 	}
-	if (!aux && c != '\0')
-		return (NULL);
-	else if (c == '\0')
+	if (*s == (char) c)
 		return ((char *) s);
 	return (aux);
 }

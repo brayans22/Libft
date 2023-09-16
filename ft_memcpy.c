@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 17:40:58 by bsaiago-          #+#    #+#             */
-/*   Updated: 2023/09/06 18:57:13 by bsaiago-         ###   ########.fr       */
+/*   Created: 2023/09/13 13:00:28 by bsaiago-          #+#    #+#             */
+/*   Updated: 2023/09/15 18:10:37 by bsaiago-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned int	i;
+	int	i;
 
-	i = 0;
-	while (i < n)
-	{
+	if (!dest && !src && n > 0)
+		return (NULL);
+	i = -1;
+	while (++i < (int)n)
 		*((char *) dest + i) = *((char *) src + i);
-		i++;
-	}
 	return (dest);
 }
 /*

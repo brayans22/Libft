@@ -6,7 +6,7 @@
 #    By: bsaiago- <bsaiago-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 11:53:36 by bsaiago-          #+#    #+#              #
-#    Updated: 2023/09/06 13:50:01 by bsaiago-         ###   ########.fr        #
+#    Updated: 2023/09/15 12:20:51 by bsaiago-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,10 @@ LIBC =	ft_atoi.c	 \
 
 ADDITIONAL = ft_substr.c 		\
 			 ft_strjoin.c 		\
-			 ft_strtrim.c 		\
 			 ft_strmapi.c 		\
              ft_striteri.c 		\
 			 ft_putchar_fd.c 	\
+			 ft_strtrim.c       \
 			 ft_putstr_fd.c 	\
 			 ft_putendl_fd.c	\
 			 ft_putnbr_fd.c 	\
@@ -66,14 +66,13 @@ OBJS = 		${SRCS:.c=.o}
 
 OBJSALL = 	${SRCSALL:.c=.o}
 
-CFLAGS = 	-Wall -Werror -Wextra -I ./
+FLAGS = 	-Wall -Werror -Wextra
 
-.c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+%.o:%.c		Makefile libft.h 
+			$(CC) $(CFLAGS) -I ./ -c $< -o $@
 
 $(NAME):	${OBJS}
 			ar rc ${NAME} ${OBJS}
-			ranlib ${NAME}
 
 bonus:		${OBJSALL}
 			ar -rsc ${NAME} ${OBJSALL}
